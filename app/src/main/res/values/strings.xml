@@ -3,4 +3,6 @@
     <string name="action_signup">Signup</string>
     <string name="action_login">Login</string>
     <string name="app_slogan">Feel the music</string>
+    <string name="prompt_email">email</string>
+    <string name="prompt_password">password</string>
 </resources>

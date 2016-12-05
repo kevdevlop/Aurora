@@ -4,4 +4,6 @@
     <string name="action_login">Login</string>
     <string name="name_app">SearchBook</string>
     <string name="app_slogan">Feel the music</string>
+    <string name="prompt_email">email</string>
+    <string name="prompt_password">password</string>
 </resources>
