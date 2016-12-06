@@ -14,18 +14,6 @@
     </EditText>
 
     <EditText
-        android:id="@+id/EditTxtLastName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:hint="@string/prompt_lastName"
-        android:ems="10" >
-
-
-    </EditText>
-
-    <EditText
         android:id="@+id/EditTxtEmailUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -59,7 +47,7 @@
     <Button
         android:layout_width="234dp"
         android:layout_height="wrap_content"
-        android:text="Done"
+        android:text="@string/action_signUp"
         android:id="@+id/btn_toSignUp"
         android:layout_marginTop="14dp"
         android:layout_marginBottom="14dp"

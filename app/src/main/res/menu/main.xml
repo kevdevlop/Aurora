@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/profile"
+            android:title="Profile"
+            android:icon="@drawable/ic_account_circle_24dp"
+        > </item>
+
+        <item
+            android:id="@+id/playList"
+            android:title="Your Playlist"
+            android:icon="@drawable/ic_queue_music_24dp"
+            > </item>
+
+        <item
+            android:id="@+id/custom"
+            android:title="Custom"
+            android:icon="@drawable/ic_tune_24dp"
+            > </item>
+
+    </group>
+
+    <item   android:title="Logout"
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_launch_24dp"
+        ></item>
+
+</menu>

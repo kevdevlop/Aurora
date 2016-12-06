@@ -24,4 +24,5 @@
     <string name="title_activity_signup">Signup</string>
     <string name="title_activity_principal_user">PrincipalUser</string>
     <string name="title_activity_principal_admin">PrincipalAdmin</string>
+    <string name="action_signUp">Done</string>
 </resources>
