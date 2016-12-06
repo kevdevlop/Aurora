@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.kevdev.aurora.MainActivity;
 import com.example.kevdev.aurora.R;
@@ -31,6 +32,7 @@ public class ActivitySignup extends AppCompatActivity {
     }
 
     public void toSignUp(View v) {
+        Toast.makeText(this, "Felicidades: Registro Exitoso", Toast.LENGTH_LONG).show();
         Intent i = new Intent(ActivitySignup.this, ActivityLogin.class);
         startActivity(i);
     }

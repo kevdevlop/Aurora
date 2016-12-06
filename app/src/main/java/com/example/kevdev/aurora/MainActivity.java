@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void LogIn(View v){
+        System.out.print("SI funciona el boton");
         Intent i = new Intent(MainActivity.this, ActivityLogin.class);
         startActivity(i);
     }

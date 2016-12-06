@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.kevdev.aurora.MainActivity;
 import com.example.kevdev.aurora.R;
@@ -28,6 +29,7 @@ public class ActivityLogin extends AppCompatActivity {
     }
 
     public void btnToLogin(View v){
+        Toast.makeText(this, "Felicidades: Ingreso Exitoso", Toast.LENGTH_LONG).show();
         Intent i = new Intent(ActivityLogin.this, ActivityPrincipal.class);
         startActivity(i);
     }
