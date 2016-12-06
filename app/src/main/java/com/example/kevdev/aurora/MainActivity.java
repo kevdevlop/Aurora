@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.kevdev.aurora.view.ActivityLogin;
-import com.example.kevdev.aurora.view.ActivitySignup;
+import com.example.kevdev.aurora.Controller.ActivityLogin;
+import com.example.kevdev.aurora.Controller.ActivitySignup;
 
 public class MainActivity extends AppCompatActivity {
     Button btnLogin, btnSignUp;
