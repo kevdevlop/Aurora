@@ -1,3 +1,3 @@
 # Aurora
 Proyecto para DAS
-Made by Kevin norman and Guillermo Gey
+Made by Kevin norman and Guillermo Santos
