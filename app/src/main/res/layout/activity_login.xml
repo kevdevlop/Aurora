@@ -25,35 +25,29 @@
         android:ems="10"
         android:inputType="textPassword"
         android:password="true"
-        android:hint="@string/prompt_password" />
+        android:hint="password" />
 
     <Button
         android:id="@+id/buttonLogin"
-        android:layout_width="fill_parent"
+        android:layout_width="107dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="24dp"
-        android:text="@string/action_login"
-        android:background="#1f56d5"
+        android:text="login"
+        android:background="#1f9bd5"
         android:textColor="#ffffff"
-        android:onClick="btnLogin"
-        android:nestedScrollingEnabled="false" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="¿No tienes cuenta?"
-        android:id="@+id/textView"
+        android:onClick="btnToLogin"
+        android:nestedScrollingEnabled="false"
         android:layout_gravity="center_horizontal" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="24dp"
-        android:text="@string/action_signup"
-        android:id="@+id/btn_toSignUp"
+        android:text="Cancel"
+        android:id="@+id/btn_cancel"
         android:layout_gravity="center_horizontal"
-        android:onClick="btn_toSignUp" />
+        android:background="#fa0404"
+        android:textColor="#ffffff"
+        android:onClick="btnToCancel" />
+
 </LinearLayout>
