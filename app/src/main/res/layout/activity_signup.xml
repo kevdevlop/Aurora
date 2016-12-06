@@ -9,7 +9,6 @@
         android:layout_height="wrap_content"
         android:hint="@string/prompt_userName"
         android:ems="10" >
-
         <requestFocus />
     </EditText>
 
@@ -20,8 +19,6 @@
         android:hint="@string/prompt_email"
         android:ems="10"
         android:inputType="textEmailAddress">
-
-
     </EditText>
 
     <EditText
