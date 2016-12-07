@@ -31,7 +31,7 @@ public class ActivityReproductor extends AppCompatActivity{
         setContentView(R.layout.activity_reproductor);
         Intent iin= getIntent();
         Bundle b = iin.getExtras();
-        SongModel song = new SongModel("Enter Sadman","Metallica", "Rock", "Metallica",R.drawable.metallica);
+        //SongModel song = new SongModel("Enter Sadman","Metallica", "Rock", "Metallica",R.drawable.metallica);
 
         nombre = (TextView) findViewById(R.id.nombre);
         artista = (TextView) findViewById(R.id.artista);
@@ -40,11 +40,11 @@ public class ActivityReproductor extends AppCompatActivity{
 
         if(b!=null)
         {
-            String nom =(String) b.get("nombre");
+            String nom =b.getString("nombre");
             nombre.setText(nom);
-            String art =(String) b.get("artista");
+            String art = b.getString("artista");
             artista.setText(art);
-            int imag =(int) b.get("imagen");
+            int imag = b.getInt("imagen");
             imagen.setImageResource(imag);
             imagen.setScaleType(ImageView.ScaleType.FIT_END);
         }
