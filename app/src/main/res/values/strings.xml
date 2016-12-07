@@ -22,8 +22,10 @@
         completions."
     </string>
     <string name="title_activity_signup">Signup</string>
+    <string name="title_activity_resultados">Resultados</string>
     <string name="title_activity_login">Login</string>
     <string name="title_activity_principal">Music</string>
+    <string name="title_activity_canciones">Canciones encontradas</string>
     <string name="title_activity_principal_user">PrincipalUser</string>
     <string name="title_activity_principal_admin">PrincipalAdmin</string>
     <string name="action_signUp">Done</string>

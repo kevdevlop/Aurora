@@ -1,11 +1,14 @@
 package com.example.kevdev.aurora.Controller;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import com.example.kevdev.aurora.R;
 
@@ -18,6 +21,7 @@ import java.util.List;
 public class ActivityPrincipal extends AppCompatActivity {
     Toolbar toolbar;
     ListView lista;
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +33,7 @@ public class ActivityPrincipal extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         lista = (ListView) findViewById(R.id.listViewSongs);
-
+        searchView = (SearchView) findViewById(R.id.searchView);
         items.add("Pop");
         items.add("Rock");
         items.add("Electronica");
@@ -42,7 +46,11 @@ public class ActivityPrincipal extends AppCompatActivity {
 
         lista.setAdapter(adapter);
 
+    }
 
+    public void searchAction(View v){
+        Intent i = new Intent(this, ActivityResultados.class);
+        startActivity(i);
     }
 
 }
