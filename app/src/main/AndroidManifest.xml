@@ -5,9 +5,9 @@
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="false"
-        android:largeHeap="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
@@ -29,11 +29,13 @@
             android:name=".Controller.ActivityPrincipal"
             android:label="@string/title_activity_principal"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Controller.ActivityResultados"
-            android:label="@string/title_activity_canciones"
-            android:theme="@style/AppTheme"
-            />
-
+        <activity
+            android:name=".Controller.ActivityResultados"
+            android:label="@string/title_activity_principal"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Controller.ActivityReproductor"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

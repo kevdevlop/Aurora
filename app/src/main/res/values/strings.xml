@@ -29,4 +29,8 @@
     <string name="title_activity_principal_user">PrincipalUser</string>
     <string name="title_activity_principal_admin">PrincipalAdmin</string>
     <string name="action_signUp">Done</string>
+
+    <string name="title_activity_reproductor">Reproductor</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
