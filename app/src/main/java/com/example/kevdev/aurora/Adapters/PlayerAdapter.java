@@ -1,4 +1,4 @@
-package com.example.kevdev.aurora.Model;
+package com.example.kevdev.aurora.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.kevdev.aurora.Model.SongModel;
 import com.example.kevdev.aurora.R;
 
 import java.util.List;

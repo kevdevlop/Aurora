@@ -21,9 +21,6 @@ import java.util.EventListener;
 public class ActivityReproductor extends AppCompatActivity{
     ImageView imagen;
     TextView nombre, artista;
-    ImageButton play;
-    ImageButton prev;
-    ImageButton next;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +46,20 @@ public class ActivityReproductor extends AppCompatActivity{
             imagen.setScaleType(ImageView.ScaleType.FIT_END);
         }
 
-
+        configureImageButton();
 
     }
 
+    private void configureImageButton() {
+        ImageButton btn = (ImageButton) findViewById(R.id.addList);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ActivityReproductor.this, ActivityPlaylist.class);
+                startActivity(i);
+            }
+        });
+    }
 
 
 }

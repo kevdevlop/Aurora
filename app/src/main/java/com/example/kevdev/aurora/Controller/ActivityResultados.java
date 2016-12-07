@@ -6,11 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import com.example.kevdev.aurora.Model.ItemAdapter;
+import com.example.kevdev.aurora.Adapters.ItemAdapter;
 import com.example.kevdev.aurora.Model.SongModel;
 import com.example.kevdev.aurora.R;
 

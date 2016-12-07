@@ -36,6 +36,10 @@
         <activity
             android:name=".Controller.ActivityReproductor"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Controller.ActivityPlaylist"
+            android:label="Your Playlist"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
