@@ -1,8 +1,11 @@
 package com.example.kevdev.aurora.Controller;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.kevdev.aurora.Adapters.AdapterPlaylist;
@@ -34,6 +37,7 @@ public class ActivityPlaylist extends AppCompatActivity{
 
         adapterPlaylist = new AdapterPlaylist(playlist,this);
         lista.setAdapter(adapterPlaylist);
+
 
         
 

@@ -40,6 +40,10 @@
             android:name=".Controller.ActivityPlaylist"
             android:label="Your Playlist"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Controller.ActivitySongList"
+            android:theme="@style/AppTheme" />
+
     </application>
 
 </manifest>

@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.kevdev.aurora.Controller.ActivitySongList;
 import com.example.kevdev.aurora.R;
 
 import java.util.List;
@@ -120,6 +121,15 @@ public class AdapterPlaylist extends BaseAdapter {
                         });
 
                 alertDialog.show();
+            }
+        });
+
+        convertView.findViewById(R.id.nombre).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), ActivitySongList.class);
+                i.putExtra("namePlaylist",items.get(position));
+                v.getContext().startActivity(i);
             }
         });
 
