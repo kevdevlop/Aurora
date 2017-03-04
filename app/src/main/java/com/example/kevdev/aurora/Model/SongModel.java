@@ -4,17 +4,19 @@ package com.example.kevdev.aurora.Model;
  * Created by KevDev on 06/12/16.
  */
 public class SongModel {
+    private String id;
     private String nombre;
     private String artista;
     private String genero;
     private String album;
-    private int imagen;
+    private String imagen;
 
     public SongModel() {
-        super();
+
     }
 
-    public SongModel(String nombre, String artista, String genero, String album, int imagen){
+
+    public SongModel(String nombre, String artista, String genero, String album, String imagen){
         this.nombre = nombre;
         this.artista = artista;
         this.genero = genero;
@@ -56,11 +58,19 @@ public class SongModel {
         this.album = album;
     }
 
-    public int getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(int imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

@@ -8,6 +8,7 @@
 
     <!-- Strings related to login and signup -->
     <string name="prompt_userName">User Name</string>
+    <string name="reset_password">¿Olvidaste tu password?</string>
     <string name="prompt_Name">Name</string>
     <string name="prompt_lastName">Last name</string>
     <string name="prompt_phone">(+55) Phone</string>
@@ -15,6 +16,7 @@
     <string name="action_cancel">Cancelar</string>
     <string name="action_modificarData">Modificar Datos</string>
     <string name="error_invalid_email">Email inválido</string>
+    <string name="error_email_exist">Email ya existente</string>
     <string name="error_invalid_password">Password demasiado corta</string>
     <string name="error_incorrect_password">Password incorrecta</string>
     <string name="error_field_required">Este Campo es requerido</string>
@@ -33,4 +35,6 @@
     <string name="title_activity_reproductor">Reproductor</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="error_invalid_login">Email o password incorrectos</string>
+    <string name="delete_account_txt">Eliminar Cuenta</string>
 </resources>

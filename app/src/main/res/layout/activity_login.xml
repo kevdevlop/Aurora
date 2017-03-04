@@ -7,11 +7,11 @@
         android:id="@+id/txtUsernameLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="24dp"
-        android:inputType="textCapWords"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="2dp"
         android:ems="10"
-        android:hint="@string/prompt_email">
+        android:hint="@string/prompt_email"
+        android:inputType="textEmailAddress">
 
         <requestFocus />
     </EditText>
@@ -20,16 +20,36 @@
         android:id="@+id/editTextPassLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:layout_marginBottom="24dp"
         android:ems="10"
         android:inputType="textPassword"
         android:password="true"
         android:hint="password" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="6dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/reset_password"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="21dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Ingresa aquí"
+        android:id="@+id/linkResetPass"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#172bdd" />
+
     <Button
         android:id="@+id/buttonLogin"
-        android:layout_width="107dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="24dp"
@@ -45,9 +65,12 @@
         android:layout_height="wrap_content"
         android:text="Cancel"
         android:id="@+id/btn_cancel"
+        android:layout_marginTop="24dp"
         android:layout_gravity="center_horizontal"
         android:background="#fa0404"
         android:textColor="#ffffff"
         android:onClick="btnToCancel" />
+
+
 
 </LinearLayout>

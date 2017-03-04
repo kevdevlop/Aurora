@@ -3,12 +3,16 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <EditText
         android:id="@+id/editTxtName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="10dp"
         android:hint="@string/prompt_userName"
-        android:ems="10" >
+        android:ems="10"
+        android:inputType="textEmailAddress">
         <requestFocus />
     </EditText>
 
@@ -16,6 +20,7 @@
         android:id="@+id/EditTxtEmailUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:hint="@string/prompt_email"
         android:ems="10"
         android:inputType="textEmailAddress">
@@ -46,7 +51,7 @@
         android:layout_height="wrap_content"
         android:text="@string/action_signUp"
         android:id="@+id/btn_toSignUp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="27dp"
         android:layout_marginBottom="14dp"
         android:layout_gravity="center_horizontal"
         android:onClick="toSignUp"
@@ -54,13 +59,16 @@
         android:textColor="#010101" />
 
     <Button
-        android:layout_width="238dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:text="@string/action_cancel"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"
         android:id="@+id/btn_toCancel"
         android:layout_gravity="center_horizontal"
         android:onClick="btn_toCancel"
         android:background="#fa0303"
         android:textColor="#ffffff" />
+
 
 </LinearLayout>

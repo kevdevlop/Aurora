@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "218991308589",
+    "firebase_url": "https://aurora-c5519.firebaseio.com",
+    "project_id": "aurora-c5519",
+    "storage_bucket": "aurora-c5519.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218991308589:android:e92a36796ed77133",
+        "android_client_info": {
+          "package_name": "com.example.kevdev.aurora"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "218991308589-7u8v6aef50gaca5j3ktbav3646alf8th.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoi0qTAqoZjf7KSE5IzbhGQdZKRF4bJYc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

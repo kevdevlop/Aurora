@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.kevdev.aurora">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="false"
@@ -43,7 +45,12 @@
         <activity
             android:name=".Controller.ActivitySongList"
             android:theme="@style/AppTheme" />
-
+        <activity
+            android:name=".Controller.ActivityProfile"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Controller.PruebaPlayer"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

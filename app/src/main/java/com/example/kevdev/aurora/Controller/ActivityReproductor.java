@@ -1,26 +1,31 @@
 package com.example.kevdev.aurora.Controller;
 
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.kevdev.aurora.Model.SongModel;
 import com.example.kevdev.aurora.R;
 
-import java.util.EventListener;
+import java.io.IOException;
 
 /**
  * Created by KevDev on 06/12/16.
  */
-public class ActivityReproductor extends AppCompatActivity{
-    ImageView imagen;
-    TextView nombre, artista;
+public class ActivityReproductor extends AppCompatActivity {
+    private ImageView imagen;
+    private TextView nombre, artista;
+    private MediaPlayer player;
+    private ImageButton btnPlayer;
+    private Boolean pausa = true;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +55,15 @@ public class ActivityReproductor extends AppCompatActivity{
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (player != null) {
+            player.release();
+            player = null;
+        }
+    }
+
     private void configureImageButton() {
         ImageButton btn = (ImageButton) findViewById(R.id.addList);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +73,70 @@ public class ActivityReproductor extends AppCompatActivity{
                 startActivity(i);
             }
         });
-    }
 
+
+
+            btnPlayer = (ImageButton) findViewById(R.id.play);
+
+            btnPlayer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+                    if (player == null ) {
+                        player = new MediaPlayer();
+
+                        final String url = "" +
+                                "https://firebasestorage.googleapis.com/v0/b/aurora-c5519.appspot.com/o/Songs%2F01%20Aguja%20(Original%20Mix).mp3?alt=media&token=c83d6f58-71df-4fce-9a95-f00ae5e0666f";
+
+                        player.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+                        try {
+                            player.setDataSource(getApplicationContext(), Uri.parse(url));
+                        } catch (IllegalArgumentException e) {
+                            Toast.makeText(getApplicationContext(), "URL incorrecta", Toast.LENGTH_SHORT).show();
+                        } catch (SecurityException e) {
+                            Toast.makeText(getApplicationContext(), "URL incorrecta", Toast.LENGTH_SHORT).show();
+                        } catch (IllegalStateException e) {
+                            Toast.makeText(getApplicationContext(), "URL incorrecta", Toast.LENGTH_SHORT);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        try {
+                            player.prepare();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        //player.prepareAsync();
+                        btnPlayer.setBackgroundResource(R.drawable.ic_pause_circle_outline_24dp);
+                        pausa = false;
+                        player.start();
+
+
+
+                    }else if (pausa){
+                        btnPlayer.setBackgroundResource(R.drawable.ic_pause_circle_outline_24dp);
+                        pausa = false;
+                        player.start();
+
+
+                    }else {
+                        if (player != null && player.isPlaying()){
+                            btnPlayer.setBackgroundResource(R.drawable.ic_play_circle_outline_24dp);
+                            pausa = true;
+                            player.pause();
+                        }
+                    }
+
+
+
+                }
+            });
+
+
+
+    }
 
 }
