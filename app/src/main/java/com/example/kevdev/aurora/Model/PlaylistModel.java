@@ -5,4 +5,5 @@ package com.example.kevdev.aurora.Model;
  */
 public class PlaylistModel {
     private  String userId;
+    private String cancionID;
 }
