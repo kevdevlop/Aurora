@@ -9,14 +9,14 @@ public class SongModel {
     private String artista;
     private String genero;
     private String album;
-    private String imagen;
+    private int imagen;
 
     public SongModel() {
 
     }
 
 
-    public SongModel(String nombre, String artista, String genero, String album, String imagen){
+    public SongModel(String nombre, String artista, String genero, String album, int imagen){
         this.nombre = nombre;
         this.artista = artista;
         this.genero = genero;
@@ -58,11 +58,11 @@ public class SongModel {
         this.album = album;
     }
 
-    public String getImagen() {
+    public int getImagen() {
         return imagen;
     }
 
-    public void setImagen(String imagen) {
+    public void setImagen(int imagen) {
         this.imagen = imagen;
     }
 
