@@ -61,7 +61,7 @@ public class ItemAdapter extends BaseAdapter {
         nombre.setText(song.getNombre());
         artista.setText(song.getArtista());
         album.setText(song.getAlbum());
-        //foto.setImageResource(song.getImagen());
+        foto.setImageResource(song.getImagen());
         foto.setScaleType(ImageView.ScaleType.FIT_END);
 
         return convertView;
