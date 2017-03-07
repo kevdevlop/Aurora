@@ -38,13 +38,13 @@ public class ActivityResultados extends AppCompatActivity {
 
 
         lista = (ListView) findViewById(R.id.listViewSongs);
-
+/*
         songs.add(new SongModel("Enter Sadman","Metallica", "Rock", "Metallica",R.drawable.metallica));
         songs.add(new SongModel("That was just your life","Metallica", "Rock", "Death Magnetic",R.drawable.dead));
         songs.add(new SongModel("Frantic","Metallica", "Rock", "ST. Anger",R.drawable.metallica));
         songs.add(new SongModel("Batery","Metallica", "Rock", "Master of puppets",R.drawable.masterofpuppets));
         songs.add(new SongModel("Fade to Black","Metallica", "Rock", "Ride the Ligthing",R.drawable.ride));
-
+**/
 
         lista.setAdapter(new ItemAdapter(this, songs));
 
