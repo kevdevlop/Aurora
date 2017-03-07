@@ -76,7 +76,7 @@ public class ActivityReproductor extends AppCompatActivity {
 
 
 
-            btnPlayer = (ImageButton) findViewById(R.id.play);
+            btnPlayer = (ImageButton) findViewById(R.id.play); //play
 
             btnPlayer.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -87,7 +87,7 @@ public class ActivityReproductor extends AppCompatActivity {
                         player = new MediaPlayer();
 
                         final String url = "" +
-                                "https://firebasestorage.googleapis.com/v0/b/aurora-c5519.appspot.com/o/Songs%2F01%20Aguja%20(Original%20Mix).mp3?alt=media&token=c83d6f58-71df-4fce-9a95-f00ae5e0666f";
+                                "https://firebasestorage.googleapis.com/v0/b/aurora-c5519.appspot.com/o/Songs%2F1.mp3?alt=media&token=4b90a3d9-f8b3-453b-9122-2f4ae3ff97b4";
 
                         player.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
