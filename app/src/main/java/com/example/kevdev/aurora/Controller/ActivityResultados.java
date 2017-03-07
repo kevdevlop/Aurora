@@ -1,6 +1,8 @@
 package com.example.kevdev.aurora.Controller;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +19,9 @@ import com.example.kevdev.aurora.Model.SongModel;
 import com.example.kevdev.aurora.R;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,15 +40,29 @@ public class ActivityResultados extends AppCompatActivity {
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-
+        Bitmap bmp = null;
+        URL url = null;
+        try {
+            url = new URL("https://firebasestorage.googleapis.com/v0/b/aurora-c5519.appspot.com/o/Songs%2Fimagen%2F1.jpg?alt=media&token=80ed7bb0-2689-4ce4-bf5f-9ff2831f7794");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        try {
+            bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //imageView.setImageBitmap(bmp);
         lista = (ListView) findViewById(R.id.listViewSongs);
+        songs.add(new SongModel("Enter Sadman","Metallica", "Rock", "Metallica",bmp ));
 
-        songs.add(new SongModel("Enter Sadman","Metallica", "Rock", "Metallica",R.drawable.metallica));
+
+
+       /* songs.add(new SongModel("Privado","Rvssian ft. Arcangel, Nicky Jam, Farruko, Konshens", "Trap", "Rvssian",R.drawable.metallica));
         songs.add(new SongModel("That was just your life","Metallica", "Rock", "Death Magnetic",R.drawable.dead));
         songs.add(new SongModel("Frantic","Metallica", "Rock", "ST. Anger",R.drawable.metallica));
         songs.add(new SongModel("Batery","Metallica", "Rock", "Master of puppets",R.drawable.masterofpuppets));
-        songs.add(new SongModel("Fade to Black","Metallica", "Rock", "Ride the Ligthing",R.drawable.ride));
+        songs.add(new SongModel("Fade to Black","Metallica", "Rock", "Ride the Ligthing",R.drawable.ride));*/
 
 
         lista.setAdapter(new ItemAdapter(this, songs));

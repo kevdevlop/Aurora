@@ -1,5 +1,7 @@
 package com.example.kevdev.aurora.Model;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by KevDev on 06/12/16.
  */
@@ -9,14 +11,14 @@ public class SongModel {
     private String artista;
     private String genero;
     private String album;
-    private int imagen;
+    private Bitmap imagen;
 
     public SongModel() {
 
     }
 
 
-    public SongModel(String nombre, String artista, String genero, String album, int imagen){
+    public SongModel(String nombre, String artista, String genero, String album, Bitmap imagen){
         this.nombre = nombre;
         this.artista = artista;
         this.genero = genero;
@@ -58,11 +60,11 @@ public class SongModel {
         this.album = album;
     }
 
-    public int getImagen() {
+    public Bitmap getImagen() {
         return imagen;
     }
 
-    public void setImagen(int imagen) {
+    public void setImagen(Bitmap imagen) {
         this.imagen = imagen;
     }
 

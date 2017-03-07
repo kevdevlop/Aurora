@@ -30,7 +30,7 @@ public class ActivityPlaylist extends AppCompatActivity{
         List<String> playlist = new ArrayList();
         lista = (ListView) findViewById(R.id.listViewSongs);
 
-        playlist.add("Para el camino");
+        playlist.add("Perreo");
         playlist.add("lo mejor del 2015");
         playlist.add("romanticas");
         playlist.add("para estudiar");

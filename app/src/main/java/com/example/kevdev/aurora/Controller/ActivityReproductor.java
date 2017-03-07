@@ -1,6 +1,7 @@
 package com.example.kevdev.aurora.Controller;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -46,8 +47,8 @@ public class ActivityReproductor extends AppCompatActivity {
             nombre.setText(nom);
             String art = b.getString("artista");
             artista.setText(art);
-            int imag = b.getInt("imagen");
-            imagen.setImageResource(imag);
+            Bitmap imag = (Bitmap) b.get("imagen");
+            imagen.setImageBitmap(imag);
             imagen.setScaleType(ImageView.ScaleType.FIT_END);
         }
 
