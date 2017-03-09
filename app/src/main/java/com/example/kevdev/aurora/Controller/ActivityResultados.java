@@ -40,7 +40,7 @@ public class ActivityResultados extends AppCompatActivity {
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Bitmap bmp = null;
+        /*Bitmap bmp = null;
         URL url = null;
         try {
             url = new URL("https://firebasestorage.googleapis.com/v0/b/aurora-c5519.appspot.com/o/Songs%2Fimagen%2F1.jpg?alt=media&token=80ed7bb0-2689-4ce4-bf5f-9ff2831f7794");
@@ -52,11 +52,14 @@ public class ActivityResultados extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //imageView.setImageBitmap(bmp);
+        //imageView.setImageBitmap(bmp);*/
+
+
+        //Cargar canciones
+
+        songs.add(new SongModel("Privado","Rvssian ft. Arcangel, Nicky Jam, Farruko, Konshens", "Trap", "Rvssian" ));
+
         lista = (ListView) findViewById(R.id.listViewSongs);
-        songs.add(new SongModel("Enter Sadman","Metallica", "Rock", "Metallica",bmp ));
-
-
 
        /* songs.add(new SongModel("Privado","Rvssian ft. Arcangel, Nicky Jam, Farruko, Konshens", "Trap", "Rvssian",R.drawable.metallica));
         songs.add(new SongModel("That was just your life","Metallica", "Rock", "Death Magnetic",R.drawable.dead));
@@ -75,7 +78,7 @@ public class ActivityResultados extends AppCompatActivity {
                 Intent i = new Intent(ActivityResultados.this,ActivityReproductor.class);
                 i.putExtra("nombre",song.getNombre());
                 i.putExtra("artista", song.getArtista());
-                i.putExtra("imagen", song.getImagen());
+              //  i.putExtra("imagen", song.getImagen());
                 startActivity(i);
             }
         });

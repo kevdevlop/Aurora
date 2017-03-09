@@ -11,19 +11,19 @@ public class SongModel {
     private String artista;
     private String genero;
     private String album;
-    private Bitmap imagen;
+
 
     public SongModel() {
 
     }
 
 
-    public SongModel(String nombre, String artista, String genero, String album, Bitmap imagen){
+    public SongModel(String nombre, String artista, String genero, String album){
         this.nombre = nombre;
         this.artista = artista;
         this.genero = genero;
         this.album = album;
-        this.imagen = imagen;
+     //   this.imagen = imagen;
     }
 
 
@@ -60,13 +60,13 @@ public class SongModel {
         this.album = album;
     }
 
-    public Bitmap getImagen() {
+ /*   public Bitmap getImagen() {
         return imagen;
     }
 
     public void setImagen(Bitmap imagen) {
         this.imagen = imagen;
-    }
+    }*/
 
     public String getId() {
         return id;

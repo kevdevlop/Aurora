@@ -21,7 +21,7 @@ import java.io.IOException;
  * Created by KevDev on 06/12/16.
  */
 public class ActivityReproductor extends AppCompatActivity {
-    private ImageView imagen;
+   // private ImageView imagen;
     private TextView nombre, artista;
     private MediaPlayer player;
     private ImageButton btnPlayer;
@@ -34,11 +34,11 @@ public class ActivityReproductor extends AppCompatActivity {
         setContentView(R.layout.activity_reproductor);
         Intent iin= getIntent();
         Bundle b = iin.getExtras();
-        //SongModel song = new SongModel("Enter Sadman","Metallica", "Rock", "Metallica",R.drawable.metallica);
+
 
         nombre = (TextView) findViewById(R.id.nombre);
         artista = (TextView) findViewById(R.id.artista);
-        imagen = (ImageView) findViewById(R.id.imageSong);
+        //imagen = (ImageView) findViewById(R.id.imageSong);
 
 
         if(b!=null)
@@ -47,9 +47,9 @@ public class ActivityReproductor extends AppCompatActivity {
             nombre.setText(nom);
             String art = b.getString("artista");
             artista.setText(art);
-            Bitmap imag = (Bitmap) b.get("imagen");
+           /* Bitmap imag = (Bitmap) b.get("imagen");
             imagen.setImageBitmap(imag);
-            imagen.setScaleType(ImageView.ScaleType.FIT_END);
+            imagen.setScaleType(ImageView.ScaleType.FIT_END);*/
         }
 
         configureImageButton();

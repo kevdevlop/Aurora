@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -24,9 +25,9 @@ import java.util.List;
  * Created by KevDev on 06/12/16.
  */
 public class ActivityPrincipal extends AppCompatActivity {
-    Toolbar toolbar;
-    ListView lista;
-    SearchView searchView;
+    Toolbar toolbar; //Encuentra música
+    ListView lista; // Estilos predefinidos
+    SearchView searchView; //proporciona la busqueda
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,20 +39,41 @@ public class ActivityPrincipal extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         lista = (ListView) findViewById(R.id.listViewSongs);
-        searchView = (SearchView) findViewById(R.id.searchView);
-        items.add("Pop");
-        items.add("Rock");
+        //searchView = (SearchView) findViewById(R.id.searchView);
+
+        items.add("Trap");
+       /* items.add("Rock");
         items.add("Electronica");
         items.add("Banda");
         items.add("Blues");
         items.add("Hip-hop");
-        items.add("Reaggue");
+        items.add("Reaggue");*/
 
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(this
                 , android.R.layout.simple_list_item_1, items);
 
         lista.setAdapter(adapter);
 
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // La posición donde se hace clic en el elemento de lista se obtiene de la
+                // la posición de parámetro de la vista de lista de Android
+                int posicion = position;
+
+                //obtengo el valor del string del elemento donde se hizo clic
+                String itemValue = (String) lista.getItemAtPosition(position);
+
+                //Con el fin de empezar a mostrar una nueva actividad lo que necesitamos es una intención
+                Intent intent = new Intent(getApplicationContext(),ActivitySongList.class);
+
+                // Poner el Id de la imagen como extra en la intención
+               // intent.putExtra("logo",LogoId[position]);
+
+                // Aquí pasaremos el parámetro de la intención creada previamente
+                startActivity(intent);
+            }
+        });
 
     }
     @Override

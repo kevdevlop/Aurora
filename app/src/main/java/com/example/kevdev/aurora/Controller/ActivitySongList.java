@@ -43,8 +43,8 @@ public class ActivitySongList extends AppCompatActivity {
         Intent in = getIntent();
         Bundle b = in.getExtras();
 
-        List<SongModel> songsList = new ArrayList();
 
+////////////////////////////////////////////////////////////////////
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -76,13 +76,15 @@ public class ActivitySongList extends AppCompatActivity {
         });
         toolbar.inflateMenu(R.menu.main);
 
-        AdapterSongsPlayList adapterPlaylist;
 
+//////////////////////////////////////////////////////////////////////////////////////////
+        AdapterSongsPlayList adapterPlaylist;
+        List<SongModel> songsList = new ArrayList();
         lista = (ListView) findViewById(R.id.listViewSongs);
         nombrePLay = (TextView) findViewById(R.id.nombrePLay);
-        Drawable d;
-        nombrePLay.setText(b.getString("namePlaylist"));
-        Bitmap bmp = null;
+        //Drawable d;
+        //nombrePLay.setText(b.getString("Trap")); ////ERRROR NO SE POR QUÉ
+       /* Bitmap bmp = null;
         URL url = null;
         try {
             url = new URL("https://firebasestorage.googleapis.com/v0/b/aurora-c5519.appspot.com/o/Songs%2Fimagen%2F1.jpg?alt=media&token=80ed7bb0-2689-4ce4-bf5f-9ff2831f7794");
@@ -93,10 +95,10 @@ public class ActivitySongList extends AppCompatActivity {
             bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
         //imageView.setImageBitmap(bmp);
-
-        songsList.add(new SongModel("Enter Sadman","Metallica", "Rock", "Metallica",bmp ));
+        songsList.add(new SongModel("Privado","Rvssian ft. Arcangel, Nicky Jam, Farruko, Konshens", "Trap", "Rvssian" ));
+        //songsList.add(new SongModel("Enter Sadman","Metallica", "Rock", "Metallica"));
        /* songsList.add(new SongModel("That was just your life","Metallica", "Rock", "Death Magnetic",R.drawable.dead));
         songsList.add(new SongModel("Frantic","Metallica", "Rock", "ST. Anger",R.drawable.metallica));
         songsList.add(new SongModel("Batery","Metallica", "Rock", "Master of puppets",R.drawable.masterofpuppets));

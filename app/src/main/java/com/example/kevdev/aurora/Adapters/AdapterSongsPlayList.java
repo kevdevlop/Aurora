@@ -93,7 +93,7 @@ public class AdapterSongsPlayList extends BaseAdapter {
                 Intent i = new Intent(v.getContext(), ActivityReproductor.class);
                 i.putExtra("nombre", song.getNombre());
                 i.putExtra("artista", song.getArtista());
-                i.putExtra("imagen", song.getImagen());
+               // i.putExtra("imagen", song.getImagen());
                 v.getContext().startActivity(i);
             }
         });
