@@ -26,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -44,7 +45,7 @@ public class ActivityPrincipal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
         final List<String> items = new ArrayList<>();
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
 
@@ -52,14 +53,14 @@ public class ActivityPrincipal extends AppCompatActivity {
         //searchView = (SearchView) findViewById(R.id.searchView);
         ///////
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-
-        for (int i=0; i<2; i++){
-            DatabaseReference mensajeRef = ref.child(i+"/Genre");
+        //int position[10000];
+        for (int i = 0; i < 2; i++) {
+            DatabaseReference mensajeRef = ref.child(i + "/Genre");
 
             mensajeRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    String l= dataSnapshot.getValue(String.class);
+                    String l = dataSnapshot.getValue(String.class);
                     items.add(l);
                 }
 
@@ -71,30 +72,7 @@ public class ActivityPrincipal extends AppCompatActivity {
 
         }
 
-
-        /*mensajeRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                String value= dataSnapshot.getValue(String.class);
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-*/
-        //items.add(l);
-      ///////////
-       // items.add(dato);
-       /* items.add("Rock");
-        items.add("Electronica");
-        items.add("Banda");
-        items.add("Blues");
-        items.add("Hip-hop");
-        items.add("Reaggue");*/
+       // Collections.reverse(items);
 
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(this
                 , android.R.layout.simple_list_item_1, items);
@@ -113,10 +91,8 @@ public class ActivityPrincipal extends AppCompatActivity {
 
                 //Con el fin de empezar a mostrar una nueva actividad lo que necesitamos es una intención
                 Intent intent = new Intent(getApplicationContext(),ActivitySongList.class);
-
-                intent.putExtra("Trap",items.get(0));
-                // Poner el Id de la imagen como extra en la intención
-               // intent.putExtra("logo",LogoId[position]);
+                intent.putExtra("Posicion", items.indexOf(items.get(posicion)));
+                intent.putExtra("Genero",items.get(posicion));
 
                 // Aquí pasaremos el parámetro de la intención creada previamente
                 startActivity(intent);

@@ -19,6 +19,11 @@ import com.example.kevdev.aurora.Adapters.AdapterSongsPlayList;
 import com.example.kevdev.aurora.MainActivity;
 import com.example.kevdev.aurora.Model.SongModel;
 import com.example.kevdev.aurora.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -79,11 +84,11 @@ public class ActivitySongList extends AppCompatActivity {
 
 //////////////////////////////////////////////////////////////////////////////////////////
         AdapterSongsPlayList adapterPlaylist;
-        List<SongModel> songsList = new ArrayList();
+        final List<SongModel> songsList = new ArrayList();
         lista = (ListView) findViewById(R.id.listViewSongs);
         nombrePLay = (TextView) findViewById(R.id.nombrePLay);
         //Drawable d;
-        nombrePLay.setText(b.getString("Trap"));
+        nombrePLay.setText(b.getString("Genero"));
        /* Bitmap bmp = null;
         URL url = null;
         try {
@@ -96,8 +101,29 @@ public class ActivitySongList extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }*/
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        int genero = b.getInt("Posicion");
+        for (int i=0; i<1; i++){    //necesito doble ciclo para crear lista de cancones
+            DatabaseReference mensajeRef = ref.child(genero+"/albums/"+i+"/songs/0/title");
+
+            mensajeRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String l= dataSnapshot.getValue(String.class);
+                    songsList.add(new SongModel(l,"Rvssian ft. Arcangel, Nicky Jam, Farruko, Konshens", "Trap", "Rvssian" ));
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+        }
+
         //imageView.setImageBitmap(bmp);
-        songsList.add(new SongModel("Privado","Rvssian ft. Arcangel, Nicky Jam, Farruko, Konshens", "Trap", "Rvssian" ));
+        //songsList.add(new SongModel("Privado","Rvssian ft. Arcangel, Nicky Jam, Farruko, Konshens", "Trap", "Rvssian" ));
         //songsList.add(new SongModel("Enter Sadman","Metallica", "Rock", "Metallica"));
        /* songsList.add(new SongModel("That was just your life","Metallica", "Rock", "Death Magnetic",R.drawable.dead));
         songsList.add(new SongModel("Frantic","Metallica", "Rock", "ST. Anger",R.drawable.metallica));

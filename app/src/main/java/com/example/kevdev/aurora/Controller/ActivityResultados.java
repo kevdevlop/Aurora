@@ -40,24 +40,11 @@ public class ActivityResultados extends AppCompatActivity {
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /*Bitmap bmp = null;
-        URL url = null;
-        try {
-            url = new URL("https://firebasestorage.googleapis.com/v0/b/aurora-c5519.appspot.com/o/Songs%2Fimagen%2F1.jpg?alt=media&token=80ed7bb0-2689-4ce4-bf5f-9ff2831f7794");
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        try {
-            bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //imageView.setImageBitmap(bmp);*/
 
-
-        //Cargar canciones
 
         songs.add(new SongModel("Privado","Rvssian ft. Arcangel, Nicky Jam, Farruko, Konshens", "Trap", "Rvssian" ));
+      //  songs.add(new SongModel("Amarillo","Rvssian ft. Arcangel, Nicky Jam, Farruko, Konshens", "Trap", "Rvssian" ));
+
 
         lista = (ListView) findViewById(R.id.listViewSongs);
 
