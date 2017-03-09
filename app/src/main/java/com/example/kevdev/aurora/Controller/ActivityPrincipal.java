@@ -33,7 +33,7 @@ public class ActivityPrincipal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
-        List<String> items = new ArrayList<>();
+        final List<String> items = new ArrayList<>();
         toolbar = (Toolbar)findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
@@ -67,6 +67,7 @@ public class ActivityPrincipal extends AppCompatActivity {
                 //Con el fin de empezar a mostrar una nueva actividad lo que necesitamos es una intención
                 Intent intent = new Intent(getApplicationContext(),ActivitySongList.class);
 
+                intent.putExtra("Trap",items.get(0));
                 // Poner el Id de la imagen como extra en la intención
                // intent.putExtra("logo",LogoId[position]);
 

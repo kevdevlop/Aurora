@@ -83,7 +83,7 @@ public class ActivitySongList extends AppCompatActivity {
         lista = (ListView) findViewById(R.id.listViewSongs);
         nombrePLay = (TextView) findViewById(R.id.nombrePLay);
         //Drawable d;
-        //nombrePLay.setText(b.getString("Trap")); ////ERRROR NO SE POR QUÉ
+        nombrePLay.setText(b.getString("Trap"));
        /* Bitmap bmp = null;
         URL url = null;
         try {
