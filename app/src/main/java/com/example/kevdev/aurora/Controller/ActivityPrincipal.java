@@ -54,7 +54,7 @@ public class ActivityPrincipal extends AppCompatActivity {
         ///////
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
         //int position[10000];
-        for (int i = 0; i < 2; i++) {
+        for (int i = 1; i >= 0; i--) {
             DatabaseReference mensajeRef = ref.child(i + "/Genre");
 
             mensajeRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -62,6 +62,7 @@ public class ActivityPrincipal extends AppCompatActivity {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     String l = dataSnapshot.getValue(String.class);
                     items.add(l);
+                    System.out.println(items.toString());
                 }
 
                 @Override
@@ -93,6 +94,8 @@ public class ActivityPrincipal extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),ActivitySongList.class);
                 intent.putExtra("Posicion", items.indexOf(items.get(posicion)));
                 intent.putExtra("Genero",items.get(posicion));
+
+
 
                 // Aquí pasaremos el parámetro de la intención creada previamente
                 startActivity(intent);
