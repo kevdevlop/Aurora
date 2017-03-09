@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.kevdev.aurora.MainActivity;
 import com.example.kevdev.aurora.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -51,14 +52,32 @@ public class ActivityPrincipal extends AppCompatActivity {
         //searchView = (SearchView) findViewById(R.id.searchView);
         ///////
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference mensajeRef = ref.child("0/Genre");
 
-        mensajeRef.addValueEventListener(new ValueEventListener() {
+        for (int i=0; i<2; i++){
+            DatabaseReference mensajeRef = ref.child(i+"/Genre");
+
+            mensajeRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String l= dataSnapshot.getValue(String.class);
+                    items.add(l);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+        }
+
+
+        /*mensajeRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 String value= dataSnapshot.getValue(String.class);
-                items.add(value);
+
             }
 
             @Override
@@ -66,6 +85,8 @@ public class ActivityPrincipal extends AppCompatActivity {
 
             }
         });
+*/
+        //items.add(l);
       ///////////
        // items.add(dato);
        /* items.add("Rock");
