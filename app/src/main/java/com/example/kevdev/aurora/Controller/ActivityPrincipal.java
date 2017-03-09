@@ -3,6 +3,7 @@ package com.example.kevdev.aurora.Controller;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.SyncStateContract;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -17,8 +18,11 @@ import android.widget.Toast;
 import com.example.kevdev.aurora.MainActivity;
 import com.example.kevdev.aurora.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +34,9 @@ public class ActivityPrincipal extends AppCompatActivity {
     Toolbar toolbar; //Encuentra música
     ListView lista; // Estilos predefinidos
     SearchView searchView; //proporciona la busqueda
-    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +50,24 @@ public class ActivityPrincipal extends AppCompatActivity {
         lista = (ListView) findViewById(R.id.listViewSongs);
         //searchView = (SearchView) findViewById(R.id.searchView);
         ///////
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference mensajeRef = ref.child("0/Genre");
 
+        mensajeRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
+                String value= dataSnapshot.getValue(String.class);
+                items.add(value);
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
       ///////////
-        items.add("Trap");
+       // items.add(dato);
        /* items.add("Rock");
         items.add("Electronica");
         items.add("Banda");
