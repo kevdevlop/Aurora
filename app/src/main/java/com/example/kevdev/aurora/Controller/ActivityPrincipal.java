@@ -17,6 +17,8 @@ import android.widget.Toast;
 import com.example.kevdev.aurora.MainActivity;
 import com.example.kevdev.aurora.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +30,7 @@ public class ActivityPrincipal extends AppCompatActivity {
     Toolbar toolbar; //Encuentra música
     ListView lista; // Estilos predefinidos
     SearchView searchView; //proporciona la busqueda
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +43,11 @@ public class ActivityPrincipal extends AppCompatActivity {
 
         lista = (ListView) findViewById(R.id.listViewSongs);
         //searchView = (SearchView) findViewById(R.id.searchView);
+        ///////
 
+
+
+      ///////////
         items.add("Trap");
        /* items.add("Rock");
         items.add("Electronica");
