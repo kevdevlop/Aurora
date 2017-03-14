@@ -1,6 +1,7 @@
 package com.example.kevdev.aurora.Controller;
 
 import android.app.AlertDialog;
+import android.app.DownloadManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -41,7 +43,7 @@ public class ActivityProfile extends AppCompatActivity{
     private TextView deleteAccount;
     private Toolbar toolbar;
     private ListView listOptions;
-    private  DatabaseReference ref;
+    private  DatabaseReference rootRef;
     FirebaseUser userF;
     private String userId;
 
@@ -59,11 +61,27 @@ public class ActivityProfile extends AppCompatActivity{
 
         userF = FirebaseAuth.getInstance().getCurrentUser();
 
-        ref = FirebaseDatabase.getInstance().getReference("users");
+        rootRef = FirebaseDatabase.getInstance().getReference();
 
-        userId = userF.getUid();
 
-        userNameTxt.setText(userId);
+
+        Query query = rootRef.child("users").child(userF.getUid());
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                UserModel user = dataSnapshot.getValue(UserModel.class);
+                userNameTxt.setText(user.getUserName());
+            }
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
 
         deleteAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +95,7 @@ public class ActivityProfile extends AppCompatActivity{
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        ref.child(userId).setValue(null);
+                        //ref.child(userId).setValue(null);
                     }
                 });
 
