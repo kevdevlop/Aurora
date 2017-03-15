@@ -58,6 +58,7 @@ public class AdapterPlaylist extends BaseAdapter {
         nombre = (TextView) convertView.findViewById(R.id.nombre);
         nombre.setText(items.get(position));
 
+        //escucha del boton editar playlist
         convertView.findViewById(R.id.imgEdit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,6 +96,7 @@ public class AdapterPlaylist extends BaseAdapter {
             }
         });
 
+        //escucha del boton eliminar playlist
         convertView.findViewById(R.id.imgDel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,9 +126,11 @@ public class AdapterPlaylist extends BaseAdapter {
             }
         });
 
+        //escucha del textview de la playlist
         convertView.findViewById(R.id.nombre).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Dependiende de la playlist que seleccionemos nos manda a la otra vista
                 Intent i = new Intent(v.getContext(), ActivitySongList.class);
                 i.putExtra("namePlaylist",items.get(position));
                 v.getContext().startActivity(i);

@@ -53,24 +53,24 @@ public class ActivityProfile extends AppCompatActivity{
         setContentView(R.layout.activity_profile);
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        final List<String> items = new ArrayList<>();
 
         userNameTxt = (TextView) findViewById(R.id.userNameTxt);
-
-        deleteAccount = (TextView) findViewById(R.id.deleteAccount);
 
         userF = FirebaseAuth.getInstance().getCurrentUser();
 
         rootRef = FirebaseDatabase.getInstance().getReference();
 
 
-
+        //se obtiene la referencia del nodo con el ID del user autenticado
         Query query = rootRef.child("users").child(userF.getUid());
 
+        // consulta a la BD
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                // la consulta se almacena en el modelo user
                 UserModel user = dataSnapshot.getValue(UserModel.class);
+                //se muestra en txtview nombre del usuario desde el modelo
                 userNameTxt.setText(user.getUserName());
             }
 
@@ -83,7 +83,7 @@ public class ActivityProfile extends AppCompatActivity{
 
 
 
-        deleteAccount.setOnClickListener(new View.OnClickListener() {
+        /*deleteAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -108,37 +108,7 @@ public class ActivityProfile extends AppCompatActivity{
 
                 builder.show();
             }
-        });
-
-        /*ref.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                UserModel user = dataSnapshot.getValue(UserModel.class);
-                userNameTxt.setText(user.getUserName());
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
         });*/
-
-
 
 
     }

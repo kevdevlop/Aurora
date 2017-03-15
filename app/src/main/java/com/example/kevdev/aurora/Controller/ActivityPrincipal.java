@@ -33,7 +33,7 @@ import java.util.List;
  * Created by KevDev on 06/12/16.
  */
 public class ActivityPrincipal extends AppCompatActivity {
-    Toolbar toolbar; //Encuentra música
+    Toolbar toolbar;
     ListView lista; // Estilos predefinidos
     SearchView searchView; //proporciona la busqueda
 
@@ -49,31 +49,25 @@ public class ActivityPrincipal extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
+        searchView = (SearchView) findViewById(R.id.searchView);
+
         lista = (ListView) findViewById(R.id.listViewSongs);
-        //searchView = (SearchView) findViewById(R.id.searchView);
-        ///////
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        //int position[10000];
-        for (int i = 1; i >= 0; i--) {
-            DatabaseReference mensajeRef = ref.child(i + "/Genre");
 
-            mensajeRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    String l = dataSnapshot.getValue(String.class);
-                    items.add(l);
-                    System.out.println(items.toString());
-                }
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
+                return false;
+            }
 
-                }
-            });
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
 
-        }
-
-       // Collections.reverse(items);
+        items.add("uno");
+        items.add("dos");
 
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(this
                 , android.R.layout.simple_list_item_1, items);
@@ -85,17 +79,11 @@ public class ActivityPrincipal extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // La posición donde se hace clic en el elemento de lista se obtiene de la
                 // la posición de parámetro de la vista de lista de Android
-                int posicion = position;
 
-                //obtengo el valor del string del elemento donde se hizo clic
-                String itemValue = (String) lista.getItemAtPosition(position);
 
                 //Con el fin de empezar a mostrar una nueva actividad lo que necesitamos es una intención
-                Intent intent = new Intent(getApplicationContext(),ActivitySongList.class);
-                intent.putExtra("Posicion", items.indexOf(items.get(posicion)));
-                intent.putExtra("Genero",items.get(posicion));
-
-
+                Intent intent = new Intent(getApplicationContext(), ActivitySongList.class);
+                intent.putExtra("Genero", items.get(position));
 
                 // Aquí pasaremos el parámetro de la intención creada previamente
                 startActivity(intent);

@@ -1,16 +1,21 @@
 package com.example.kevdev.aurora.Model;
 
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+
+import java.io.InputStream;
+import java.net.URL;
 
 /**
  * Created by KevDev on 06/12/16.
  */
 public class SongModel {
-    private String id;
+    private int id;
     private String nombre;
     private String artista;
     private String genero;
     private String album;
+    private String URL;
 
 
     public SongModel() {
@@ -60,19 +65,21 @@ public class SongModel {
         this.album = album;
     }
 
- /*   public Bitmap getImagen() {
-        return imagen;
-    }
 
-    public void setImagen(Bitmap imagen) {
-        this.imagen = imagen;
-    }*/
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public String getURL() {
+        return URL;
+    }
+
+    public void setURL(String URL) {
+        this.URL = URL;
     }
 }
