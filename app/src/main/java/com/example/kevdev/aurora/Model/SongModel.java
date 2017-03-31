@@ -19,16 +19,17 @@ public class SongModel {
 
 
     public SongModel() {
-
     }
 
 
-    public SongModel(String nombre, String artista, String genero, String album){
+    public SongModel(String nombre, String artista, String genero, String album
+            , String URL){
         this.nombre = nombre;
         this.artista = artista;
         this.genero = genero;
         this.album = album;
      //   this.imagen = imagen;
+        this.URL = URL;
     }
 
 
@@ -81,5 +82,17 @@ public class SongModel {
 
     public void setURL(String URL) {
         this.URL = URL;
+    }
+
+    @Override
+    public String toString() {
+        return "SongModel{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", artista='" + artista + '\'' +
+                ", genero='" + genero + '\'' +
+                ", album='" + album + '\'' +
+                ", URL='" + URL + '\'' +
+                '}';
     }
 }

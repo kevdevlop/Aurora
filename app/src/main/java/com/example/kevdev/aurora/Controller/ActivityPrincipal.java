@@ -5,8 +5,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.SyncStateContract;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,88 +19,90 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.kevdev.aurora.Adapters.AdapaterGeneros;
 import com.example.kevdev.aurora.MainActivity;
+import com.example.kevdev.aurora.Model.SongModel;
 import com.example.kevdev.aurora.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by KevDev on 06/12/16.
  */
 public class ActivityPrincipal extends AppCompatActivity {
-    Toolbar toolbar;
-    ListView lista; // Estilos predefinidos
-    SearchView searchView; //proporciona la busqueda
-
-
-
+    private Toolbar toolbar;
+    private RecyclerView recyclerView; // Estilos predefinidos
+    private FirebaseUser userF;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager lManager;
+    private DatabaseReference rootRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
-        final List<String> items = new ArrayList<>();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-
         setSupportActionBar(toolbar);
 
-        searchView = (SearchView) findViewById(R.id.searchView);
+        final List<Object> generos = new ArrayList();
 
-        lista = (ListView) findViewById(R.id.listViewSongs);
+        // Obtener el Recycler
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        // Usar un administrador para LinearLayout
+        lManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(lManager);
+
+        // Crear un nuevo adaptador
+        mAdapter = new AdapaterGeneros(generos);
+        recyclerView.setAdapter(mAdapter);
+
+        userF = FirebaseAuth.getInstance().getCurrentUser();
+
+        rootRef = FirebaseDatabase.getInstance().getReference().child("generos");
+
+        rootRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public boolean onQueryTextSubmit(String query) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                generos.removeAll(generos);
+                for (DataSnapshot snap : dataSnapshot.getChildren()) {
+                    SongModel genero = snap.getValue(SongModel.class);
+                    Log.i("MyAPP", genero.toString());
+                    generos.add(genero.getNombre());
 
-                return false;
+                }
+                mAdapter.notifyDataSetChanged();
             }
 
             @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
+            public void onCancelled(DatabaseError databaseError) {
 
-        items.add("uno");
-        items.add("dos");
-
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this
-                , android.R.layout.simple_list_item_1, items);
-
-        lista.setAdapter(adapter);
-
-        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // La posición donde se hace clic en el elemento de lista se obtiene de la
-                // la posición de parámetro de la vista de lista de Android
-
-
-                //Con el fin de empezar a mostrar una nueva actividad lo que necesitamos es una intención
-                Intent intent = new Intent(getApplicationContext(), ActivitySongList.class);
-                intent.putExtra("Genero", items.get(position));
-
-                // Aquí pasaremos el parámetro de la intención creada previamente
-                startActivity(intent);
             }
         });
 
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        /*MenuItem item = menu.getItem(R.id.profile);
-        item.setTitle(FirebaseAuth.getInstance().getCurrentUser().getEmail());*/
-        return true;
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main,menu);
+        MenuItem item = menu.findItem(R.id.search);
+
+        SearchView searchView = (SearchView)item.getActionView();
+
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -126,9 +132,6 @@ public class ActivityPrincipal extends AppCompatActivity {
         }
     }
 
-    public void searchAction(View v){
-        Intent i = new Intent(this, ActivityResultados.class);
-        startActivity(i);
-    }
+
 
 }

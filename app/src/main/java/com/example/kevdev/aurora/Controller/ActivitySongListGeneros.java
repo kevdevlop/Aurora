@@ -5,18 +5,29 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.kevdev.aurora.Adapters.ItemAdapter;
 import com.example.kevdev.aurora.Adapters.PlayerAdapter;
 import com.example.kevdev.aurora.MainActivity;
+import com.example.kevdev.aurora.Model.PlaylistModel;
 import com.example.kevdev.aurora.Model.SongModel;
 import com.example.kevdev.aurora.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,58 +40,162 @@ public class ActivitySongListGeneros extends AppCompatActivity {
     private Toolbar toolbar;
     private ListView lista;
     private TextView nombrePLay;
+    private ItemAdapter adapterPlaylist;
+    private FirebaseUser userF;
+    private DatabaseReference rootRef;
+    private ArrayList<SongModel> songsList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_songlist);
+        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        //Se obtiene la info del intent anterior
         Intent in = getIntent();
+
+        //Se guarda lo obtenido del intent anterior
         Bundle b = in.getExtras();
 
 
-        setSupportActionBar(toolbar);
+        String genero = null;
 
-        PlayerAdapter adapterPlaylist;
-        final List<SongModel> songsList = new ArrayList();
+        //Recibimos el dato de la view anterior
+        if ( b != null ) {
+            genero =  b.getString("Genero");
+        }
+
+        //Creamos una lista de las canciones que vamos a obtener de la BD
+        songsList = new ArrayList();
+
         lista = (ListView) findViewById(R.id.listViewSongs);
         nombrePLay = (TextView) findViewById(R.id.nombrePLay);
 
         //se establece el nombre de la playlist que se selecciono
-        nombrePLay.setText(b.getString("namePlaylist"));
+        nombrePLay.setText(b.getString("Genero"));
 
+        //Se obtienen los datos de la BD
+        userF = FirebaseAuth.getInstance().getCurrentUser();
 
+        rootRef = FirebaseDatabase.getInstance().getReference().child("songs");
 
+        /* ArrayList<SongModel> songListData = new ArrayList<SongModel>();
 
-        //imageView.setImageBitmap(bmp);
-        songsList.add(new SongModel("Privado","Rvssian ft. Arcangel, Nicky Jam, Farruko, Konshens", "Trap", "Rvssian" ));
-        songsList.add(new SongModel("Enter Sadman","Metallica", "Rock", "Metallica"));
-       /* songsList.add(new SongModel("That was just your life","Metallica", "Rock", "Death Magnetic",R.drawable.dead));
-        songsList.add(new SongModel("Frantic","Metallica", "Rock", "ST. Anger",R.drawable.metallica));
-        songsList.add(new SongModel("Batery","Metallica", "Rock", "Master of puppets",R.drawable.masterofpuppets));
-        songsList.add(new SongModel("Fade to Black","Metallica", "Rock", "Ride the Ligthing",R.drawable.ride));**/
+        PlaylistModel plm = new PlaylistModel();
 
-        adapterPlaylist = new PlayerAdapter(this,songsList);
+        this.songsList = plm.getSongsbyGenero(genero);
+
+        for (int i = 0 ; i < songsList.size(); i++){
+            SongModel song = songsList.get(i);
+
+            songListData.add(song);
+        }*/
+
+        //Verificamos si se obtuvieron los datos
+        /*if (songsList.isEmpty()) {
+            //Notificamos en caso de no obtenerlos
+            Toast.makeText(ActivitySongListGeneros.this
+                    ,"Lo siento no hay canciones de este genero :S"
+                    , Toast.LENGTH_LONG).show();
+        }*/
+
+        //Se crea el adaptador para mostrar las canciones
+        adapterPlaylist = new ItemAdapter(this,songsList);
+
         lista.setAdapter(adapterPlaylist);
-        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                SongModel song = (SongModel) lista.getItemAtPosition(position);
 
-                Intent i = new Intent(ActivitySongListGeneros.this, ActivityReproductor.class);
-                i.putExtra("nombre", song.getNombre());
-                i.putExtra("artista", song.getArtista());
-                //  i.putExtra("imagen", song.getImagen());
-                startActivity(i);
+        //Realizamos el query para que nos devuelva sólo canciones con el genero seleccionado
+        Query query = rootRef.orderByChild("genero").equalTo(genero);
+
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                songsList.removeAll(songsList);
+                //Obtenemos el resultado de la BD
+                for (DataSnapshot snap : dataSnapshot.getChildren()) {
+
+                    //cada dato obtenido lo almacenamos en el modelo
+                    SongModel song = snap.getValue(SongModel.class);
+
+                    //Agregamos cada elemento a la lista
+                    songsList.add(song);
+                }
+
+                //Verificamos si se obtuvieron los datos
+                if (songsList.isEmpty()) {
+                    //Notificamos en caso de no obtenerlos
+                    Toast.makeText(ActivitySongListGeneros.this
+                            ,"Lo siento no hay canciones de este genero :S"
+                            , Toast.LENGTH_LONG).show();
+                }
+
+                //Notificamos al adaptador que hubo un cambio
+                adapterPlaylist.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
             }
         });
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        /*MenuItem item = menu.getItem(R.id.profile);
-        item.setTitle(FirebaseAuth.getInstance().getCurrentUser().getEmail());*/
-        return true;
+
+        //Añadmos un escucha a los elementos de la lista
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            //Al hacer click realiza una accion
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //Se obtiene el elemento que se lecciono de la lista
+                SongModel song = (SongModel) lista.getItemAtPosition(position);
+
+                //Se crea un intent para especificar a que view se va a ir
+                Intent i = new Intent(ActivitySongListGeneros.this, ActivityReproductor.class);
+
+                //Se mandan los datos a la siguiente view
+                i.putExtra("nombre", song.getNombre());
+                i.putExtra("artista", song.getArtista());
+                i.putExtra("url", song.getURL());
+                i.putExtra("dataPlay", song.getGenero());
+                i.putExtra("indexSong",position);
+                //  i.putExtra("imagen", song.getImagen());
+
+
+                //Se crea la nueva view
+                startActivityForResult(i,100);
+                finish();
+            }
+        });
+
     }
 
+    //Se crean la opciones del menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main, menu);
+        MenuItem item = menu.findItem(R.id.search);
+
+        SearchView searchView = (SearchView)item.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    //Se crea un escucha en el menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

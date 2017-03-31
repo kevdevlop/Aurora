@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.kevdev.aurora.Adapters.ItemAdapter;
@@ -42,7 +44,8 @@ public class ActivityResultados extends AppCompatActivity {
 
 
 
-        songs.add(new SongModel("Privado","Rvssian ft. Arcangel, Nicky Jam, Farruko, Konshens", "Trap", "Rvssian" ));
+        songs.add(new SongModel("Privado","Rvssian ft. Arcangel, Nicky Jam, Farruko, Konshens", "Trap", "Rvssian"
+                , "https://firebasestorage.googleapis.com/v0/b/aurora-c5519.appspot.com/o/Songs%2F2-17%20Holdin'%20On%20(Hermitude%20Remix).mp3?alt=media&token=d6c1ca78-481a-4186-931c-08006465c61f"));
       //  songs.add(new SongModel("Amarillo","Rvssian ft. Arcangel, Nicky Jam, Farruko, Konshens", "Trap", "Rvssian" ));
 
 
@@ -65,6 +68,7 @@ public class ActivityResultados extends AppCompatActivity {
                 Intent i = new Intent(ActivityResultados.this,ActivityReproductor.class);
                 i.putExtra("nombre",song.getNombre());
                 i.putExtra("artista", song.getArtista());
+                i.putExtra("url",song.getURL());
               //  i.putExtra("imagen", song.getImagen());
                 startActivity(i);
             }
@@ -73,8 +77,13 @@ public class ActivityResultados extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main, menu);
+        MenuItem item = menu.findItem(R.id.search);
+
+        SearchView searchView = (SearchView)item.getActionView();
+
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -83,32 +84,7 @@ public class ActivityProfile extends AppCompatActivity{
 
 
 
-        /*deleteAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-
-                builder.setMessage("¿Estas seguro de eliminar tu cuenta?").setTitle("Eliminar Cuenta");
-
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        //ref.child(userId).setValue(null);
-                    }
-                });
-
-                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-
-                builder.show();
-            }
-        });*/
 
 
     }

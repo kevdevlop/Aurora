@@ -14,6 +14,8 @@
         android:text="Nombres de la cancion"
         android:layout_toRightOf="@id/foto"
         android:layout_alignParentTop="true"
+        android:textStyle="bold"
+        android:textSize="20dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:singleLine="true" />
     <TextView
@@ -21,17 +23,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/nombre"
+        android:textSize="18dp"
         android:layout_toRightOf="@+id/foto"
-        android:gravity="center"
+        android:gravity="left"
         android:singleLine="true"
         android:text="Artista"/>
     <TextView
         android:id="@+id/album"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="16dp"
         android:layout_below="@id/artista"
         android:layout_toRightOf="@+id/foto"
-        android:gravity="center"
+        android:gravity="left"
         android:singleLine="true"
         android:text="Album"/>
 

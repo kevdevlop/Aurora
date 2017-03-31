@@ -49,9 +49,11 @@ public class PlayerAdapter extends BaseAdapter {
         }
 
         nombre = (TextView) convertView.findViewById(R.id.nombre);
+
         artista = (TextView)convertView.findViewById(R.id.artista);
 
         nombre.setText(song.getNombre());
+
         artista.setText(song.getArtista());
 
         return convertView;

@@ -22,30 +22,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Busqueda"
-            android:id="@+id/textView4"
-            android:layout_gravity="center_horizontal" />
-
-        <SearchView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/searchView"
-            android:layout_gravity="right"
-            android:queryHint="Encuentra tu musica" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Elige tu estilo"
-            android:id="@+id/textView5" />
+            android:id="@+id/textView5"
+            android:textSize="30dp"
+            android:textStyle="bold" />
 
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="322dp"
-            android:id="@+id/listViewSongs"
-            android:layout_weight="0.66" />
+       <android.support.v7.widget.RecyclerView
+           android:id="@+id/recyclerView"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:padding="3dp"
+           android:scrollbars="vertical"
+
+           />
 
     </LinearLayout>
 

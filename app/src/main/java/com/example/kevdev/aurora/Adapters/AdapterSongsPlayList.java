@@ -54,6 +54,7 @@ public class AdapterSongsPlayList extends BaseAdapter {
         }
 
         nombre = (TextView) convertView.findViewById(R.id.nombre);
+        
         nombre.setText(songs.get(position).getNombre());
 
         convertView.findViewById(R.id.imgDel).setOnClickListener(new View.OnClickListener() {
