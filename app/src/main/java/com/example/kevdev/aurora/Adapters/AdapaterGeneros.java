@@ -6,8 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kevdev.aurora.Controller.ActivitySongList;
+import com.example.kevdev.aurora.Controller.ActivitySongListGeneros;
 import com.example.kevdev.aurora.Model.SongModel;
 import com.example.kevdev.aurora.R;
 
@@ -47,10 +49,10 @@ public class AdapaterGeneros extends RecyclerView.Adapter<AdapaterGeneros.Genero
             @Override
             public void onClick(View v) {
                 //Con el fin de empezar a mostrar una nueva actividad lo que necesitamos es una intención
-                Intent intent = new Intent(v.getContext(), ActivitySongList.class);
+                Intent intent = new Intent(v.getContext(), ActivitySongListGeneros.class);
                 intent.putExtra("Genero", items.get(position).toString());
-
                 v.getContext().startActivity(intent);
+
             }
         });
     }

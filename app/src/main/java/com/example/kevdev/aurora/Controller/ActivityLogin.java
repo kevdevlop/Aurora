@@ -68,7 +68,7 @@ public class ActivityLogin extends AppCompatActivity {
                     @Override
                     public void onComplete(Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(ActivityLogin.this, "Felicidades: Ingreso Exitoso", Toast.LENGTH_LONG).show();
+                            Toast.makeText(ActivityLogin.this, "Bienvenido", Toast.LENGTH_LONG).show();
                             Intent i = new Intent(ActivityLogin.this, ActivityPrincipal.class);
                             startActivity(i);
                             finish();
