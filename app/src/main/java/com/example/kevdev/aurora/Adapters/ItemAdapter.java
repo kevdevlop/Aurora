@@ -69,7 +69,10 @@ public class ItemAdapter extends BaseAdapter {
 
         album.setText(song.getAlbum());
 
-        new DownloadImageTask(foto).execute(song.getImagen());
+        if (song.getImagen() != null){
+            new DownloadImageTask(foto).execute(song.getImagen());
+        }
+
 
         return convertView;
     }

@@ -351,8 +351,10 @@ public class ActivityReproductor extends AppCompatActivity {
                 //inicia la reproduccion
                 player.start();
 
-                //Establecemos la imagen de la cancion con ayuda de la clase DownloadImageTask
-                new DownloadImageTask(imagen).execute(listsong.get(songIndex).getImagen());
+                if (listsong.get(songIndex).getImagen() != null){
+                    //Establecemos la imagen de la cancion con ayuda de la clase DownloadImageTask
+                    new DownloadImageTask(imagen).execute(listsong.get(songIndex).getImagen());
+                }
 
                 //Establecemos el nombre de la cancion
                 String nombreSong = listsong.get(songIndex).getNombre();
