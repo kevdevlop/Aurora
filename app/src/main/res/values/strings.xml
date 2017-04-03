@@ -37,4 +37,9 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="error_invalid_login">Email o password incorrectos</string>
     <string name="delete_account_txt">Eliminar Cuenta</string>
+    <string name="search_title">Encuentra tu musica</string>
+    <string name="add_playlist">Crear playlist</string>
+    <string name="title_activity_activity_reset_password">Sign in</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
 </resources>

@@ -16,6 +16,7 @@ public class SongModel {
     private String genero;
     private String album;
     private String URL;
+    private String imagen;
 
 
     public SongModel() {
@@ -23,12 +24,12 @@ public class SongModel {
 
 
     public SongModel(String nombre, String artista, String genero, String album
-            , String URL){
+            , String URL, String imagen){
         this.nombre = nombre;
         this.artista = artista;
         this.genero = genero;
         this.album = album;
-     //   this.imagen = imagen;
+        this.imagen = imagen;
         this.URL = URL;
     }
 
@@ -84,6 +85,14 @@ public class SongModel {
         this.URL = URL;
     }
 
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
     @Override
     public String toString() {
         return "SongModel{" +
@@ -93,6 +102,8 @@ public class SongModel {
                 ", genero='" + genero + '\'' +
                 ", album='" + album + '\'' +
                 ", URL='" + URL + '\'' +
+                ", Imagen='" + imagen + '\'' +
                 '}';
     }
+
 }

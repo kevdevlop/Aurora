@@ -110,8 +110,13 @@ public class ActivityLogin extends AppCompatActivity {
                 });
 
     }
-    public void btnToCancel(View v){
-        Intent i = new Intent(ActivityLogin.this, MainActivity.class);
+
+    public void btnResetPass(View v){
+        Intent i = new Intent(this, ActivityResetPassword.class);
         startActivity(i);
+    }
+
+    public void btnToCancel(View v){
+        finish();
     }
 }

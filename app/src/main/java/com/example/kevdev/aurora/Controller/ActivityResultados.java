@@ -44,8 +44,8 @@ public class ActivityResultados extends AppCompatActivity {
 
 
 
-        songs.add(new SongModel("Privado","Rvssian ft. Arcangel, Nicky Jam, Farruko, Konshens", "Trap", "Rvssian"
-                , "https://firebasestorage.googleapis.com/v0/b/aurora-c5519.appspot.com/o/Songs%2F2-17%20Holdin'%20On%20(Hermitude%20Remix).mp3?alt=media&token=d6c1ca78-481a-4186-931c-08006465c61f"));
+        /*songs.add(new SongModel("Privado","Rvssian ft. Arcangel, Nicky Jam, Farruko, Konshens", "Trap", "Rvssian"
+                , "https://firebasestorage.googleapis.com/v0/b/aurora-c5519.appspot.com/o/Songs%2F2-17%20Holdin'%20On%20(Hermitude%20Remix).mp3?alt=media&token=d6c1ca78-481a-4186-931c-08006465c61f"));*/
       //  songs.add(new SongModel("Amarillo","Rvssian ft. Arcangel, Nicky Jam, Farruko, Konshens", "Trap", "Rvssian" ));
 
 
@@ -93,9 +93,9 @@ public class ActivityResultados extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();
-                this.finish();
                 Intent i = new Intent(this, MainActivity.class);
                 startActivity(i);
+                this.finish();
                 return true;
             case R.id.profile:
                 Intent ip = new Intent(this, ActivityProfile.class);

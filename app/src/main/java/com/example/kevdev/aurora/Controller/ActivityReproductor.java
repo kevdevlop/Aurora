@@ -4,9 +4,11 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -35,6 +37,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -76,8 +79,7 @@ public class ActivityReproductor extends AppCompatActivity {
         btnPrev = (ImageButton) findViewById(R.id.previous);
         nombre = (TextView) findViewById(R.id.nombre);
         artista = (TextView) findViewById(R.id.artista);
-        //imagen = (ImageView) findViewById(R.id.imageSong);
-
+        imagen = (ImageView) findViewById(R.id.imageSong);
 
         Log.i("Gnero", b.getString("dataPlay"));
         dataPlay = b.getString("dataPlay");
@@ -349,12 +351,18 @@ public class ActivityReproductor extends AppCompatActivity {
                 //inicia la reproduccion
                 player.start();
 
+                //Establecemos la imagen de la cancion con ayuda de la clase DownloadImageTask
+                new DownloadImageTask(imagen).execute(listsong.get(songIndex).getImagen());
+
+                //Establecemos el nombre de la cancion
                 String nombreSong = listsong.get(songIndex).getNombre();
                 nombre.setText(nombreSong);
 
+                //Establecemos el nombre del artista
                 String artistaSong = listsong.get(songIndex).getArtista();
                 artista.setText(artistaSong);
 
+                //Manejamos las excepciones que nos pudiera arrojar
             } catch (IllegalArgumentException e) {
                 Toast.makeText(getApplicationContext()
                         , "URL incorrecta", Toast.LENGTH_SHORT).show();
@@ -368,6 +376,33 @@ public class ActivityReproductor extends AppCompatActivity {
                 e.printStackTrace();
             }
 
+    }
+
+    //Esta clase nos sirve para descargar la imagen desde la url en segundo plano
+    //Esto para no interferir con el UI Thread
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("ErrorImage", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
     }
 
 

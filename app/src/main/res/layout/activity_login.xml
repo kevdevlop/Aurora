@@ -37,14 +37,15 @@
         android:layout_gravity="center_horizontal" />
 
     <TextView
+        android:id="@+id/linkResetPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="21dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Ingresa aquí"
-        android:id="@+id/linkResetPass"
         android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="21dp"
+        android:layout_marginTop="2dp"
+        android:onClick="btnResetPass"
+        android:text="Ingresa aquí"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#172bdd" />
 
     <Button

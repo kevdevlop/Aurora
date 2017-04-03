@@ -127,6 +127,8 @@ public class ActivitySongList extends AppCompatActivity {
                 i.putExtra("nombre", song.getNombre());
                 i.putExtra("artista", song.getArtista());
                 i.putExtra("url", song.getURL());
+                i.putExtra("dataPlay", song.getGenero());
+                i.putExtra("indexSong", position);
                 //  i.putExtra("imagen", song.getImagen());
                 startActivity(i);
 
@@ -155,9 +157,9 @@ public class ActivitySongList extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();
-                this.finish();
                 Intent i = new Intent(this, MainActivity.class);
                 startActivity(i);
+                this.finish();
                 return true;
             case R.id.profile:
                 Intent ip = new Intent(this, ActivityProfile.class);

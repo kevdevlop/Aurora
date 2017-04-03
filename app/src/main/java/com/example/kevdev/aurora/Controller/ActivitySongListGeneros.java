@@ -203,9 +203,9 @@ public class ActivitySongListGeneros extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();
-                this.finish();
                 Intent i = new Intent(this, MainActivity.class);
                 startActivity(i);
+                this.finish();
                 return true;
             case R.id.profile:
                 Intent ip = new Intent(this, ActivityProfile.class);

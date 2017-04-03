@@ -26,4 +26,5 @@
     <string name="title_activity_principal_user">PrincipalUser</string>
     <string name="title_activity_principal_admin">PrincipalAdmin</string>
     <string name="delete_account_txt">Eliminar Cuenta</string>
+    <string name="search_title">Encuentra tu musica</string>
 </resources>

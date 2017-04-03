@@ -83,15 +83,7 @@ public class ActivityProfile extends AppCompatActivity{
         });
 
 
-
-
-
-
     }
-
-
-
-
 
 
 }
