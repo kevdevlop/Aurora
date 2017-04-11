@@ -1,3 +1,3 @@
 # Aurora
-Proyecto para DAS
-Made by Kevin norman and Guillermo Santos
+Proyecto para PISDOS
+Realizado por Kevin norman & Guillermo Santos
