@@ -57,8 +57,7 @@ public class ActivityReproductor extends AppCompatActivity {
     private Boolean pausa = true;
     private ImageView imagen;
     private String nom;
-    private String url;
-    FirebaseUser userF;
+    private FirebaseUser userF;
     private DatabaseReference rootRef;
     private int currentSongIndex = 0;
     private String dataPlay;
@@ -83,13 +82,11 @@ public class ActivityReproductor extends AppCompatActivity {
 
         Log.i("Gnero", b.getString("dataPlay"));
         dataPlay = b.getString("dataPlay");
+
         Log.i("Indice", String.valueOf(b.getInt("indexSong")));
         currentSongIndex = b.getInt("indexSong");
-
         songlist = new ArrayList<>();
-
         player = new MediaPlayer();
-
         rootRef = FirebaseDatabase.getInstance().getReference().child("songs");
 
         //Realizamos el query para que nos devuelva sólo canciones con el genero seleccionado
@@ -104,7 +101,6 @@ public class ActivityReproductor extends AppCompatActivity {
                         //cada dato obtenido
                         // lo almacenamos en el modelo
                         SongModel song = snap.getValue(SongModel.class);
-
                         //Agregamos cada elemento a la lista
                         songlist.add(song);
                         Log.i("Dentro del for", songlist.toString());
@@ -204,10 +200,8 @@ public class ActivityReproductor extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 });
-
                 //Se hace la consulta a la BD
                 Query query = rootRef.orderByChild("ownerID").equalTo(userId);
-
                 //se establece  el adaptador al builder del dialog
                 mBuilder.setAdapter(adapterAddPlaylist, new DialogInterface.OnClickListener() {
                     //se utiliza un escucha para la playlist que seleccionamos
@@ -216,7 +210,6 @@ public class ActivityReproductor extends AppCompatActivity {
                         String name = adapterAddPlaylist.getItem(which);
                         Map<String,Boolean>  map = new HashMap<String, Boolean>();
                         Map<String, Object> childUpdates = new HashMap<>();
-
                         map.put(nom,true);
                         //childUpdates.put("/" + name + "/songs",map);
                         //rootRef.updateChildren(childUpdates);
@@ -224,7 +217,6 @@ public class ActivityReproductor extends AppCompatActivity {
                         Toast.makeText(ActivityReproductor.this, "Agregada a: "+ name, Toast.LENGTH_LONG).show();
                     }
                 });
-
                 //Obtenemos los datos que nos regresa la consulta para mostrar las playlist
                 //del usuario
                 query.addValueEventListener(new ValueEventListener() {
@@ -247,20 +239,15 @@ public class ActivityReproductor extends AppCompatActivity {
                     // en caso de error en la extraccion de los datos
                     }
                 });
-
                 //Se agrega la vista al builder del dialog
                 mBuilder.setView(mview);
-
                 //se crea el dialog
                 AlertDialog dialog = mBuilder.create();
-
                 //se muestra el dialog
                 dialog.show();
 
             }
         });
-
-
             //se agrega un escucha al boton
         btnPlayer.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -269,22 +256,18 @@ public class ActivityReproductor extends AppCompatActivity {
                     if (player.isPlaying()){
                         if (player!= null){
                             player.pause();
-
                             btnPlayer.setBackgroundResource(R.drawable.ic_play_circle_outline_24dp);
                         }
                     }else {
 
                         if (player!= null){
                             player.start();
-
                             btnPlayer.setBackgroundResource(R.drawable.ic_pause_circle_outline_24dp);
                         }
                     }
-
                 }
 
         });
-        
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -298,7 +281,6 @@ public class ActivityReproductor extends AppCompatActivity {
                 }
             }
         });
-        
 
         btnPrev.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -326,14 +308,9 @@ public class ActivityReproductor extends AppCompatActivity {
                 }
             }
         });
-
-
-
     }
 
     private void stratPlay(int songIndex, List<SongModel> listsong) {
-
-
             //intentamos establecer los recursos de la url de la cancion al reproductor
             //y obtenemos cualquier error que pueda ocurrir
             try {
@@ -406,9 +383,6 @@ public class ActivityReproductor extends AppCompatActivity {
             bmImage.setImageBitmap(result);
         }
     }
-
-
-
 }
 
 

@@ -13,6 +13,7 @@ import com.example.kevdev.aurora.Controller.ActivitySignup;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+//Vista Principal del proyecto
 public class MainActivity extends AppCompatActivity {
     Button btnLogin, btnSignUp;
     private FirebaseAuth.AuthStateListener authStateListener;
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //Se verifica si el usuario ya se habia autenticado previamente
+        //utilizando un escucha de la clase FirebaseAuth
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -38,12 +41,12 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        //Cuando se detiene la vista verificamos nos aseguramos de eliminar el escucha
         if (authStateListener != null){
             mAuth.removeAuthStateListener(authStateListener);
         }
@@ -52,15 +55,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        //Cuando se inicia la Vista se agrega el escucha
         mAuth.addAuthStateListener(authStateListener);
     }
-
+    //Metodo cuando se hace click en registrar
     public void SignUp(View v) {
         Intent i = new Intent(MainActivity.this, ActivitySignup.class);
         startActivity(i);
     }
-
+    //Metodo cuando se hace click en login
     public void LogIn(View v){
+
         Intent i = new Intent(MainActivity.this, ActivityLogin.class);
         startActivity(i);
     }

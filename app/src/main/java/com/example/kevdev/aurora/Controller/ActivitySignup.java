@@ -53,8 +53,12 @@ import static android.Manifest.permission.READ_CONTACTS;
  * Created by KevDev on 03/12/16.
  */
 public class ActivitySignup extends AppCompatActivity {
-    private EditText  editTEmailUser, editTPassword, editTPasswordConfirm, editUserName;
-    private Button btnSignUp, btnCancel;
+    private EditText  editTEmailUser;
+    private EditText   editTPassword;
+    private EditText editTPasswordConfirm;
+    private EditText editUserName;
+    private Button btnSignUp;
+    private Button btnCancel;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
 
@@ -62,12 +66,8 @@ public class ActivitySignup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-
         firebaseAuth = FirebaseAuth.getInstance();
-
         progressDialog = new ProgressDialog(this);
-
-
         editUserName =  (EditText) findViewById((R.id.editTxtName));
         editTEmailUser = (EditText) findViewById(R.id.EditTxtEmailUser);
         editTPassword = (EditText) findViewById(R.id.editTextPassword);
@@ -84,7 +84,7 @@ public class ActivitySignup extends AppCompatActivity {
         String password = editTPassword.getText().toString().trim();
         String confirmPass = editTPasswordConfirm.getText().toString().trim();
 
-
+        //Validamos que los campos ingresados no esten vacios
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(this, "Por favor ingresa el email", Toast.LENGTH_SHORT).show();
             return;
@@ -97,27 +97,31 @@ public class ActivitySignup extends AppCompatActivity {
             Toast.makeText(this, "Las passwords no coinciden", Toast.LENGTH_SHORT).show();
             return;
         }
-
+        //Mostrando el progreso
         progressDialog.setMessage("Registrando Usuario...");
         progressDialog.show();
 
+        //Se crea un nuevo usuario con el email y password ingresados
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(Task<AuthResult> task) {
 
+                        //Verificamos que no exista algun error
                         if (task.isSuccessful()) {
-
+                            //Se notifica que se hizo satisfactoriamente
                             Toast.makeText(ActivitySignup.this
                                     , "Usuario registrado correctamente"
                                     , Toast.LENGTH_SHORT).show();
-
+                            //Se crea el nuevo usuario en la BD
                             grabarUsuario(userName, email);
+                            //Se redirecciona a la vista de login
                             Intent i = new Intent(ActivitySignup.this, ActivityLogin.class);
                             startActivity(i);
                             finish();
 
                         } else {
+                            //Si existen errores informamos al usuario con las excepciones
                             try {
                                 throw task.getException();
                             } catch(FirebaseAuthWeakPasswordException e) {
@@ -147,27 +151,25 @@ public class ActivitySignup extends AppCompatActivity {
                         }
                     }
                 });
-
-
     }
 
     private void grabarUsuario(String userName, String email) {
-        //get firebase user
+
+        //Se obtiene la instancia del usuario
         FirebaseUser userF = FirebaseAuth.getInstance().getCurrentUser();
-
+        //Creamos un nuevo usuario
         UserModel userM = new UserModel(userName, email);
-        //get reference
+        //obtenemos la referencia de la tabla users
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
-
+        //Obtenemos el ID del usuario
         String userId = userF.getUid();
-        //build child
+        //Se escribe el nuevo usuario en la BD
         ref.child(userId).setValue(userM);
-
     }
+
 
     public void btn_toCancel(View v){
+        //Se finaliza la vista actual al presionar cancelar
         finish();
     }
-
-
 }

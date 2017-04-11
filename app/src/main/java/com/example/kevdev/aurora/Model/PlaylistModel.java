@@ -22,7 +22,6 @@ public class PlaylistModel {
     private String nombre;
     private String ownerID;
     private ArrayList<SongModel> songs = new ArrayList<SongModel>();
-    private DatabaseReference rootRef;
 
     public PlaylistModel(){
 
@@ -49,46 +48,6 @@ public class PlaylistModel {
     }
 
 
-    public ArrayList<SongModel> getSongsbyGenero(String genero) {
-
-
-        rootRef = FirebaseDatabase.getInstance().getReference().child("songs");
-
-        //Realizamos el query para que nos devuelva sólo canciones con el genero seleccionado
-        final Query query = rootRef.orderByChild("genero").equalTo(genero);
-
-        ValueEventListener valueEventListener = query.addValueEventListener(new ValueEventListener() {
-
-            public ArrayList<SongModel> songlist = new ArrayList<SongModel>();
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                //Obtenemos el resultado de la BD
-                for (DataSnapshot snap : dataSnapshot.getChildren()) {
-
-                    //cada dato obtenido
-                    // lo almacenamos en el modelo
-                    SongModel song = snap.getValue(SongModel.class);
-
-                    //Agregamos cada elemento a la lista
-                    songlist.add(song);
-                    Log.i("Dentro del for", songlist.toString());
-
-                }
-
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        Log.i("Fuera del metodo", songs.toString());
-        return songs;
-    }
-
     public ArrayList<SongModel> getSongsbyPlaylistName(String playlistName){
         return songs;
     }
@@ -100,7 +59,5 @@ public class PlaylistModel {
     public ArrayList<SongModel> getSongs() {
         return songs;
     }
-
-
 
 }

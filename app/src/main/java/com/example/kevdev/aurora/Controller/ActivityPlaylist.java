@@ -40,10 +40,10 @@ import java.util.List;
  */
 public class ActivityPlaylist extends AppCompatActivity{
     Toolbar toolbar;
-    ListView lista;
-    FloatingActionButton actionButton;
+    private ListView lista;
+    private FloatingActionButton actionButton;
     private DatabaseReference rootRef;
-    FirebaseUser userF;
+    private FirebaseUser userF;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

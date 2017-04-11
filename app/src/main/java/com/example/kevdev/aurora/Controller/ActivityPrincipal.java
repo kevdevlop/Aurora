@@ -41,6 +41,7 @@ import java.util.Objects;
 /**
  * Created by KevDev on 06/12/16.
  */
+//Vista principal despues de la autenticacion
 public class ActivityPrincipal extends AppCompatActivity {
     private Toolbar toolbar;
     private RecyclerView recyclerView; // Estilos predefinidos
@@ -94,6 +95,7 @@ public class ActivityPrincipal extends AppCompatActivity {
         });
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -105,10 +107,9 @@ public class ActivityPrincipal extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+//Menu de opciones
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-
         switch (item.getItemId()) {
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();
@@ -131,7 +132,5 @@ public class ActivityPrincipal extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
 
 }

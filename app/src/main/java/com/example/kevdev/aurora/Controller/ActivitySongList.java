@@ -78,14 +78,6 @@ public class ActivitySongList extends AppCompatActivity {
         //se establece el nombre de la playlist que se selecciono
         nombrePLay.setText(nombrePlaylist);
 
-        //imageView.setImageBitmap(bmp);
-        /*songsList.add(new SongModel("Privado","Rvssian ft. Arcangel, Nicky Jam, Farruko, Konshens", "Trap", "Rvssian"
-                , "https://firebasestorage.googleapis.com/v0/b/aurora-c5519.appspot.com/o/Songs%2F1.mp3?alt=media&token=4b90a3d9-f8b3-453b-9122-2f4ae3ff97b4"));
-        songsList.add(new SongModel("Enter Sadman","Metallica", "Rock", "Metallica"
-                ,"https://firebasestorage.googleapis.com/v0/b/aurora-c5519.appspot.com/o/Songs%2F2.mp3?alt=media&token=e9b72ff9-2712-4f23-a1c2-8d1ec758c04b" ));
-       */
-
-
         userF = FirebaseAuth.getInstance().getCurrentUser();
 
         final String userId = userF.getEmail();
@@ -97,13 +89,11 @@ public class ActivitySongList extends AppCompatActivity {
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //songsList.removeAll(songsList);
+                songsList.removeAll(songsList);
                 for (DataSnapshot snap : dataSnapshot.getChildren()) {
                     SongModel song = snap.getValue(SongModel.class);
                     songsList.add(song);
-
                 }
-
             }
 
             @Override
@@ -131,8 +121,6 @@ public class ActivitySongList extends AppCompatActivity {
                 i.putExtra("indexSong", position);
                 //  i.putExtra("imagen", song.getImagen());
                 startActivity(i);
-
-
             }
         });
 
@@ -144,7 +132,6 @@ public class ActivitySongList extends AppCompatActivity {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.main, menu);
         MenuItem item = menu.findItem(R.id.search);
-
         SearchView searchView = (SearchView)item.getActionView();
 
         return super.onCreateOptionsMenu(menu);
@@ -152,7 +139,6 @@ public class ActivitySongList extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
 
         switch (item.getItemId()) {
             case R.id.logout:
